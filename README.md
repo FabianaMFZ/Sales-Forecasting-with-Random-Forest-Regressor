@@ -10,13 +10,16 @@ We first attempted a linear regression model to predict sales, but the root mean
 To enhance our model's understanding of the data, we decided to segment the data into two groups - closed days and open days - as sales were consistently zero on closed days. However, when we applied another decision tree model, the RMSE increased and the R2 value decreased, as expected due to the absence of accurate predictions for zero sales.
 
 In order to refine our model, we engineered specific features, including columns like 'Mean sales per store', 'Store ranking by sum of sales', 'Customer count rank by store', and 'Average customers per day of the week for each store'. The main correlations with sales were the following:
-nb_customers_on_day              0.827845
-store_sales                      0.774913
-avg_customers_per_day_of_week    0.703677
-store_customer_rank             -0.576876
-store_sales_rank                -0.663663
+  - nb_customers_on_day              0.827845
+  - store_sales                      0.774913
+  - avg_customers_per_day_of_week    0.703677
+  - store_customer_rank             -0.576876
+  - store_sales_rank                -0.663663
 
 Our final feature selection for training, based on higher correlations and lower p-values, included 'nb_customers_on_day', 'avg_customers_per_day_of_week', 'promotion', 'day_of_week', 'store_customer_rank', 'store_sales_rank', and 'sales'.
-With our Decision Tree model, we achieved an R2 value of 0.96 and a root mean square error of 585.14. Following a grid search incorporating KFold cross-validation, we determined the optimal parameters for a Random Forest model, resulting in an improved R2 value of 0.97 and a reduced root mean square error of 501.67. The strategic inclusion of new columns representing relationships between key features significantly contributed to the success of our model.
+With our Decision Tree model, we achieved an R2 value of 0.96 and a root mean square error of 585.14. Following a grid search incorporating KFold cross-validation, we determined the optimal parameters for a Random Forest model, resulting in: 
+- an improved R2 value of 0.97 and
+- a reduced root mean square error of 501.67.
 
+The strategic inclusion of new columns representing relationships between key features significantly contributed to the success of our model.
 Furthermore, we compared our predicted sales with the actual data and found minimal margin of error.
