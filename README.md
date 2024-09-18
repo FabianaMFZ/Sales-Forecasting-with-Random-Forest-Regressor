@@ -1,4 +1,4 @@
-### Sales Forecasting with Random Forest Regressor
+## Sales Forecasting with Random Forest Regressor
 
 For this challenge, we conducted Exploratory Data Analysis to gain insights into the historical data of a specific store. The goal was to identify key features and select the most suitable Machine Learning model to forecast sales for the upcoming semester.
 
@@ -15,6 +15,9 @@ In order to refine our model, we engineered specific features, including columns
   - avg_customers_per_day_of_week    0.703677
   - store_customer_rank             -0.576876
   - store_sales_rank                -0.663663
+
+![image](https://github.com/user-attachments/assets/a59750dd-9069-4511-85d6-e0c3bfa0ae75)
+
 
 Our final feature selection for training, based on higher correlations and lower p-values, included 'nb_customers_on_day', 'avg_customers_per_day_of_week', 'promotion', 'day_of_week', 'store_customer_rank', 'store_sales_rank', and 'sales'.
 With our Decision Tree model, we achieved an R2 value of 0.96 and a root mean square error of 585.14. Following a grid search incorporating KFold cross-validation, we determined the optimal parameters for a Random Forest model, resulting in: 
