@@ -1,4 +1,4 @@
-### Challenge_random-forest-regressor
+### Sales Forecasting with Random Forest Regressor
 
 For this challenge, we conducted Exploratory Data Analysis to gain insights into the historical data of a specific store. The goal was to identify key features and select the most suitable Machine Learning model to forecast sales for the upcoming semester.
 
