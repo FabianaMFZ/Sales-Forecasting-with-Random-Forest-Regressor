@@ -1,28 +1,72 @@
-## Sales Forecasting with Random Forest Regressor
+## Sales Forecasting Project
 
-For this challenge, we conducted Exploratory Data Analysis to gain insights into the historical data of a specific store. The goal was to identify key features and select the most suitable Machine Learning model to forecast sales for the upcoming semester.
+### Overview
+This project focuses on building a machine learning model for accurate sales forecasting. It involves data preprocessing, feature engineering, and exploratory analysis to uncover patterns, by adhering to best practices in time series analysis, such as preserving temporal order in data splits and engineering lag-based features to capture trends and seasonality. By predicting future sales, the model helps businesses optimize inventory, allocate resources efficiently, and plan strategic promotions, ultimately driving revenue growth and improving operational decision-making.
 
-During the EDA process and analysis of graphs, we observed significant statistical variances among different groups and identified features that exhibited stronger correlations with our target variable - sales.
+**This project uses Python to:**
+  - Explore and preprocess historical sales data.
+  - Engineer features to capture temporal patterns and improve model performance.
+  - Build, evaluate, and optimize machine learning models.
+  - Apply the best model to predict sales for production data.
 
-Initially, we conducted a correlation matrix between sales and independent variables such as 'day_of_week', 'nb_customers_on_day', 'open', 'promotion', 'state_holiday', 'school_holiday', 'day', 'month', and 'year'. Notably, the number of customers on a given day ('nb_customers_on_day') showed the highest correlation with sales.
+**Features**
+  - Data cleaning and preprocessing.
+  - Feature engineering for lag variables, rolling averages, and temporal patterns.
+  - Model training using Decision Tree Regressor and Gradient Boosting Regressor.
+  - Model evaluation with metrics like RMSE, R², and MAE.
+  - Predictions for future sales applied to production data.
 
-We first attempted a linear regression model to predict sales, but the root mean square error (RMSE) was higher than anticipated. Subsequently, we experimented with a decision tree model, which showed a slight improvement.
-To enhance our model's understanding of the data, we decided to segment the data into two groups - closed days and open days - as sales were consistently zero on closed days. However, when we applied another decision tree model, the RMSE increased and the R2 value decreased, as expected due to the absence of accurate predictions for zero sales.
+### Workflow
 
-In order to refine our model, we engineered specific features, including columns like 'Mean sales per store', 'Store ranking by sum of sales', 'Customer count rank by store', and 'Average customers per day of the week for each store'. The main correlations with sales were the following:
-  - nb_customers_on_day              0.827845
-  - store_sales                      0.774913
-  - avg_customers_per_day_of_week    0.703677
-  - store_customer_rank             -0.576876
-  - store_sales_rank                -0.663663
+**Data Exploration**
+  - Cleaned and transformed the dataset.
+  - Visualized key trends, such as:
+     - Sales distribution per store.
+     - Patterns during promotional periods.
+     - Monthly trends of average sales across all stores.
+  - Analyzed feature correlations to guide feature selection.
 
-![image](https://github.com/user-attachments/assets/a59750dd-9069-4511-85d6-e0c3bfa0ae75)
+**Feature Engineering**
+  - Created lag features (e.g., weekly and monthly sales changes) and rolling averages to capture trends and seasonality.
+  - Addressed outliers by capping sales values.
+  - Evaluated multicollinearity to refine feature selection and reduce noise.
 
+**Model Development**
+  - Decision Tree Regressor:
+     - Explored tree depths to optimize complexity.
+     - Analyzed feature importance to identify key variables.
+  - Gradient Boosting Regressor:
+     - Used TimeSeriesSplit for cross-validation.
+     - Performed hyperparameter tuning using RandomizedSearchCV.
+     - Achieved improved performance over the Decision Tree model.
 
-Our final feature selection for training, based on higher correlations and lower p-values, included 'nb_customers_on_day', 'avg_customers_per_day_of_week', 'promotion', 'day_of_week', 'store_customer_rank', 'store_sales_rank', and 'sales'.
-With our Decision Tree model, we achieved an R2 value of 0.96 and a root mean square error of 585.14. Following a grid search incorporating KFold cross-validation, we determined the optimal parameters for a Random Forest model, resulting in: 
-- an improved R2 value of 0.97 and
-- a reduced root mean square error of 501.67.
+**Production Deployment**
+  - Applied the best model to production data.
+  - Evaluated performance using RMSE, R², and MAE.
+  - Saved predictions alongside actual values for both training and test sets.
 
-The strategic inclusion of new columns representing relationships between key features significantly contributed to the success of our model.
-Furthermore, we compared our predicted sales with the actual data and found minimal margin of error.
+### Key Findings
+  - Temporal features (e.g., rolling averages, lag values) had the highest predictive power.
+  - Proper handling of outliers and time-based splits significantly improved model reliability.
+  - Gradient Boosting outperformed the Decision Tree model, achieving lower RMSE and better generalization.
+
+### Results
+  - Best Model: Gradient Boosting Regressor.
+  - Metrics:
+      - RMSE: Significantly lower for Gradient Boosting compared to the Decision Tree.
+      - R²: High, indicating strong explanatory power.
+      - MAE: Low, reflecting accurate predictions.
+
+### Files in Repository
+    sales_forecasting.ipynb: Main Jupyter notebook containing code and analysis.
+    past_data_clean.csv: Cleaned dataset used for training.
+    df_model.csv: Dataset prepared for modeling with engineered features.
+    complete_with_predictions.csv: Final dataset with actual and predicted values.
+### Requirements
+    Required libraries:
+        pandas
+        numpy
+        matplotlib
+        seaborn
+        scikit-learn
+        joblib
