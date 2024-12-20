@@ -57,11 +57,6 @@ This project focuses on building a machine learning model for accurate sales for
       - R²: High, indicating strong explanatory power.
       - MAE: Low, reflecting accurate predictions.
 
-### Files in Repository
-    sales_forecasting.ipynb: Main Jupyter notebook containing code and analysis.
-    past_data_clean.csv: Cleaned dataset used for training.
-    df_model.csv: Dataset prepared for modeling with engineered features.
-    complete_with_predictions.csv: Final dataset with actual and predicted values.
 ### Requirements
     Required libraries:
         pandas
